@@ -1,0 +1,99 @@
+<layout_info resolution='y>=H'>
+<globals>
+<def var='Line.Height' value='48' scalable='yes'/>
+<def var='Font.Height' value='24' scalable='yes'/>
+<def var='About.OuterBorder' value='80' scalable='yes'/>
+<def var='TabWidget.TitleSpacing' value='20' scalable='yes'/>
+<def var='RichTextWidget.InnerMargin' value='20' scalable='yes'/>
+<def var='Layout.Spacing' value='16' scalable='yes'/>
+<def var='ShowLauncherLogo' value='0'/>
+<def var='ShowGlobalMenuLogo' value='0'/>
+<def var='ShowSearchPic' value='0'/>
+<def var='ShowChooserPics' value='0'/>
+<def var='ShowChooserPageDisplay' value='1'/>
+<def var='Launcher.HelpButton.Width' value='48' scalable='yes'/> 
+<def var='SaveLoadChooser.ExtInfo.Visible' value='1'/>
+<def var='RecorderDialog.ExtInfo.Visible' value='1'/>
+<def var='ImageAlbum.ImageInset' value='32' scalable='yes' />
+<def var='OnScreenDialog.ShowPics' value='0'/>
+<def var='KeyMapper.Spacing' value='20' scalable='yes'/>
+<def var='KeyMapper.ButtonWidth' value='200' scalable='yes'/>
+<def var='KeyMapper.ResetWidth' value='120' scalable='yes'/>
+<def var='Tooltip.MaxWidth' value='300' scalable='yes'/>
+<def var='Tooltip.XDelta' value='24' scalable='yes'/> 
+<def var='Tooltip.YDelta' value='24' scalable='yes'/>
+<def var='Predictive.Button.Width' value='80' scalable='yes'/>
+<def var='Predictive.ShowDeletePic' value='0'/>
+<def var='DropdownButton.Width' value='32' scalable='yes'/>
+<def var='VolumeSlider.Width' value='192' scalable='yes'/>
+<def var='Checkbox.Spacing' value='24' scalable='yes'/>
+<def var='Radiobutton.Spacing' value='24' scalable='yes'/>
+<def var='GridSupported' value='0'/>
+<widget name='OptionsLabel' 
+size='180,Globals.Line.Height' 
+textalign='end' 
+/>
+<widget name='ShortOptionsLabel' 
+size='90,Globals.Line.Height' 
+/>
+<widget name='SmallLabel' 
+size='36,Globals.Line.Height' 
+/>
+<widget name='CloudTabLabel' 
+size='300,Globals.Line.Height' 
+/>
+<widget name='CloudTabLabelValue' 
+size='300,Globals.Line.Height' 
+/>
+<widget name='Button' 
+size='162,48' 
+/>
+<widget name='WideButton' 
+size='324,48' 
+/>
+<widget name='Slider' 
+size='-1,36' 
+/>
+<widget name='PopUp' 
+size='-1,38' 
+/>
+<widget name='Checkbox' 
+size='-1,28' 
+/>
+<widget name='Radiobutton' 
+size='-1,Globals.Line.Height' 
+/>
+<widget name='ListWidget' 
+padding='10,0,12,0' 
+/>
+<widget name='PopUpWidget' 
+padding='10,8,0,0' 
+/>
+<widget name='EditTextWidget' 
+padding='8,8,0,0' 
+/>
+<widget name='Console' 
+padding='10,8,8,8' 
+/>
+<widget name='Scrollbar' 
+size='30,0' 
+/>
+<widget name='TabWidget.Tab' 
+size='60,54' 
+padding='0,0,12,0' 
+/>
+<widget name='TabWidget.Body' 
+padding='0,0,0,0' 
+/>
+<widget name='TabWidget.NavButton' 
+size='30,36' 
+padding='0,5,6,0' 
+/>
+<widget name='EditRecordLabel' 
+size='90,50' 
+/>
+<widget name='EditRecord' 
+size='360,50' 
+/>
+</globals>
+</layout_info>

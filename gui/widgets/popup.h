@@ -46,8 +46,6 @@ protected:
 	EntryList		_entries;
 	int				_selectedItem;
 
-	int				_leftPadding;
-	int				_rightPadding;
 	uint32			_cmd;
 
 public:
@@ -75,7 +73,6 @@ public:
 	void handleMouseEntered(int button) override	{ if (_selectedItem != -1) read(_entries[_selectedItem].name); setFlags(WIDGET_HILITED); markAsDirty(); }
 	void handleMouseLeft(int button) override	{ clearFlags(WIDGET_HILITED); markAsDirty(); }
 
-	void reflowLayout() override;
 protected:
 	void drawWidget() override;
 };
@@ -88,24 +85,18 @@ protected:
 class PopUpDialog : public Dialog {
 protected:
 	Widget		*_boss;
-	int			_clickX, _clickY;
 	int			_selection;
 	int			_initialSelection;
 	uint32		_openTime;
-	bool		_twoColumns;
-	int			_entriesPerColumn;
 
-	int			_leftPadding;
-	int			_rightPadding;
 	int			_lineHeight;
 
 	int			_lastRead;
 
-	typedef Common::Array<Common::U32String> EntryList;
-	EntryList		_entries;
+	ListWidget *_list;
 
 public:
-	PopUpDialog(Widget *boss, const Common::String &name, int clickX, int clickY);
+	PopUpDialog(Widget *boss, const Common::String &name);
 
 	void open() override;
 	void reflowLayout() override;

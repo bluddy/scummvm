@@ -1,0 +1,21 @@
+<layout_info>
+	<dialog name='HamburgerMenu' overlays='screen' shading='dim'>
+		<layout type='vertical' align='start' padding='16,16,16,16'>
+			<widget name='MainMenuButton' type='Button' />
+			<widget name='TouchControlsButton' type='Button' />
+			<widget name='VirtualKeyboardButton' type='Button' />
+		</layout>
+	</dialog>
+
+	<dialog name='GlobalOptions' overlays='screen'>
+		<layout type='vertical' align='center' padding='0,0,0,0'>
+			<widget name='TabWidget' type='TabWidget'/>
+			<layout type='horizontal' padding='16,16,16,16'>
+				<space/>
+				<widget name='Cancel' type='Button' />
+				<widget name='Apply' type='Button' />
+				<widget name='Ok' type='Button' />
+			</layout>
+		</layout>
+	</dialog>
+</layout_info>

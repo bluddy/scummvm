@@ -46,7 +46,40 @@ void ScrollContainerWidget::init() {
 	_scrolledX = 0;
 	_scrolledY = 0;
 	_limitH = 140;
+	_isDragging = false;
+	_dragStartPos = 0;
+	_dragStartScrolledY = 0;
 	recalc();
+}
+
+void ScrollContainerWidget::handleMouseDown(int x, int y, int button, int clickCount) {
+	if (g_system->hasFeature(OSystem::kFeatureTouchscreen)) {
+		_isDragging = true;
+		_dragStartPos = y;
+		_dragStartScrolledY = _scrolledY;
+	}
+}
+
+void ScrollContainerWidget::handleMouseUp(int x, int y, int button, int clickCount) {
+	if (g_system->hasFeature(OSystem::kFeatureTouchscreen)) {
+		_isDragging = false;
+	}
+}
+
+void ScrollContainerWidget::handleMouseMoved(int x, int y, int button) {
+	if (g_system->hasFeature(OSystem::kFeatureTouchscreen) && _isDragging) {
+		int delta = y - _dragStartPos;
+		_scrolledY = _dragStartScrolledY - delta;
+
+		if (_scrolledY < 0)
+			_scrolledY = 0;
+		if (_scrolledY > _verticalScroll->_numEntries - _limitH)
+			_scrolledY = _verticalScroll->_numEntries - _limitH;
+
+		_verticalScroll->_currentPos = _scrolledY;
+		_verticalScroll->recalc();
+		g_gui.scheduleTopDialogRedraw();
+	}
 }
 
 void ScrollContainerWidget::handleMouseWheel(int x, int y, int direction) {

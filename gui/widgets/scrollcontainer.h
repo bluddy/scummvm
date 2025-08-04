@@ -37,6 +37,10 @@ class ScrollContainerWidget: public Widget, public CommandSender {
 	ThemeEngine::WidgetBackground _backgroundType;
 	Common::String _dialogName;
 
+	bool _isDragging;
+	int _dragStartPos;
+	int _dragStartScrolledY;
+
 	void recalc();
 
 public:
@@ -52,6 +56,9 @@ public:
 
 	void setBackgroundType(ThemeEngine::WidgetBackground backgroundType);
 
+	void handleMouseDown(int x, int y, int button, int clickCount) override;
+	void handleMouseUp(int x, int y, int button, int clickCount) override;
+	void handleMouseMoved(int x, int y, int button) override;
 	void handleMouseWheel(int x, int y, int direction) override;
 
 	// We overload getChildY to make sure child widgets are positioned correctly.
