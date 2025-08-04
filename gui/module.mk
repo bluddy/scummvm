@@ -48,7 +48,8 @@ MODULE_OBJS := \
 	widgets/richtext.o \
 	widgets/scrollbar.o \
 	widgets/scrollcontainer.o \
-	widgets/tab.o
+	widgets/tab.o \
+	widgets/tabwidget.o
 
 ifdef USE_LIBCURL
 ifdef USE_CLOUD

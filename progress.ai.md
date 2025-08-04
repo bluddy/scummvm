@@ -17,7 +17,7 @@ This document summarizes the progress made on the project to improve the ScummVM
 *   **Theme File:** Created a new theme file, `gui/themes/touchmodern/touchmodern.theme`, and populated it with a basic color palette and font definitions.
 *   **Build System Integration:** Created a `touchmodern.zip` archive and added it to the `dists/debian/clean` file to integrate the new theme into the build process.
 
-### Phase 2 & 3: Widget Redesign and Layout
+### Phase 3: Layout and Navigation Implementation
 
 *   **Layout File:** Created a new layout file, `gui/themes/touchmodern/touchmodern_layout.stx`, to define larger, more touch-friendly widget sizes and spacing.
 *   **ButtonWidget:** Redesigned the `ButtonWidget` in the `touchmodern.theme` file to be larger and to include a ripple effect for touch feedback.
@@ -28,10 +28,11 @@ This document summarizes the progress made on the project to improve the ScummVM
     *   Redesigned the `PopUpDialog` to be a full-screen, list-based menu for better touch interaction.
     *   Modified `popup.h` and `popup.cpp` to reflect this change.
 *   **Checkbox & Radiobutton:** Redesigned the `CheckboxWidget` and `RadiobuttonWidget` in the `touchmodern.theme` file with larger, more easily tappable icons.
-*   **New UI Elements:**
+*   **New UI Elements (Scaffolding):**
     *   Created `touchmodern_dialogs.stx` to define the basic structure for the new hamburger menu and the tab-based, full-screen options dialog.
     *   Included this new layout file into the main `touchmodern.theme`.
+    *   Created skeleton C++ classes (`HamburgerMenuDialog`, `TabbedOptionsDialog`) and integrated them into the build system.
 
 ## 3. Next Steps
 
-The next step is to integrate these new UI elements into the ScummVM C++ codebase, which will involve modifying the relevant files to use the new theme and handle the new UI elements.
+The next step is to implement the functionality of the new UI elements, starting with the `HamburgerMenuDialog`.
