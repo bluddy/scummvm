@@ -26,6 +26,7 @@
 #include "gui/widget.h"
 #include "common/str.h"
 #include "common/array.h"
+#include "gui/widgets/list.h"
 
 namespace GUI {
 
