@@ -63,6 +63,8 @@ enum {
 class Dialog;
 class ThemeEval;
 class GuiObject;
+class HamburgerMenuDialog;
+class TabbedOptionsDialog;
 
 #define g_gui	(GUI::GuiManager::instance())
 
@@ -240,6 +242,10 @@ protected:
 	void setLastMousePos(int16 x, int16 y);
 
 	void emptyTrash(Dialog *const activeDialog);
+
+private:
+	HamburgerMenuDialog *_hamburgerMenu;
+	TabbedOptionsDialog *_optionsDialog;
 };
 
 } // End of namespace GUI

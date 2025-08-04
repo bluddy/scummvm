@@ -55,6 +55,8 @@ enum {
 // Constructor
 GuiManager::GuiManager() : CommandSender(nullptr), _redrawStatus(kRedrawDisabled), _stateIsSaved(false),
 	_cursorAnimateCounter(0), _cursorAnimateTimer(0) {
+	_hamburgerMenu = nullptr;
+	_optionsDialog = nullptr;
 	_theme = nullptr;
 	_useStdCursor = false;
 
@@ -584,7 +586,23 @@ void GuiManager::runLoop() {
 				continue;
 			}
 
-			processEvent(event, activeDialog);
+			if (_theme->getName() == "touchmodern") {
+				if (event.type == Common::EVENT_MAINMENU) {
+					if (!_hamburgerMenu) {
+						_hamburgerMenu = new HamburgerMenuDialog();
+					}
+					_hamburgerMenu->runModal();
+					continue;
+				} else if (event.type == Common::EVENT_GLOBAL_OPTIONS) {
+					if (!_optionsDialog) {
+						_optionsDialog = new TabbedOptionsDialog();
+					}
+					_optionsDialog->runModal();
+					continue;
+				}
+			} else {
+				processEvent(event, activeDialog);
+			}
 		}
 
 		// If iconsSet was modified, notify dialogs so that they can be  updated if needed

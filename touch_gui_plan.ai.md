@@ -72,15 +72,24 @@ This phase will focus on testing the new theme on a variety of devices and makin
 2.  **Gather feedback from users:** Make the new theme available to a group of beta testers and gather their feedback.
 3.  **Iterate on the design:** Based on the feedback from testing, make any necessary adjustments to the theme and layout.
 
-## 4. Timeline
+## 5. Integration Strategy
+
+To ensure that the new touch-friendly theme does not interfere with the existing GUI, the following integration strategy will be used:
+
+1.  **Theme Selection:** A new "Theme" option will be added to the **Global Options > Graphics** tab, allowing users to switch between the existing themes and the new "touchmodern" theme. The default theme will remain unchanged.
+2.  **Conditional Logic:** The C++ code will use conditional logic to check the currently selected theme and display the appropriate UI elements. For example, the hamburger menu and the tab-based configuration manager will only be displayed when the "touchmodern" theme is active.
+3.  **Widget-Level Adaptations:** The new touch-friendly widgets will be designed to be compatible with the existing widget API. Where necessary, new properties will be added to the theme definition to enable or disable touch-specific behaviors.
+4.  **Separate Layout Definitions:** The "touchmodern" theme will use its own layout files, ensuring that the layout of the existing themes is not affected.
+
+## 6. Timeline
 
 This project is expected to take approximately 4-6 weeks to complete. The following is a rough timeline:
 
 *   **Week 1:** Theme Scaffolding
 *   **Weeks 2-3:** Widget Redesign
-*   **Weeks 4-5:** Layout Implementation
+*   **Weeks 4-5:** Layout and Navigation Implementation
 *   **Week 6:** Refinement and Testing
 
-## 5. Conclusion
+## 7. Conclusion
 
 By following this plan, we can create a new, touch-friendly theme for the ScummVM GUI that will significantly improve the user experience on Android and iOS devices. This will make ScummVM more accessible and enjoyable for a wider range of users.

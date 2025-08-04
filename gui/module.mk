@@ -13,6 +13,7 @@ MODULE_OBJS := \
 	EventRecorder.o \
 	filebrowser-dialog.o \
 	gui-manager.o \
+	hamburgermenu.o \
 	helpdialog.o \
 	imagealbum-dialog.o \
 	launcher.o \
@@ -25,6 +26,7 @@ MODULE_OBJS := \
 	saveload.o \
 	saveload-dialog.o \
 	shaderbrowser-dialog.o \
+	tabbedoptionsdialog.o \
 	textviewer.o \
 	themebrowser.o \
 	ThemeEngine.o \
