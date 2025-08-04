@@ -1,0 +1,66 @@
+<render_info>
+	<palette>
+		<color name="black" rgb="0,0,0" />
+		<color name="white" rgb="255,255,255" />
+		<color name="lightgrey" rgb="104,104,104" />
+		<color name="darkgrey" rgb="64,64,64" />
+		<color name="green" rgb="32,160,32" />
+		<color name="green2" rgb="0,255,0" />
+		<color name="blue" rgb="0,0,255" />
+		<color name="blue2" rgb="0,128,255" />
+		<color name="red" rgb="255,0,0" />
+		<color name="red2" rgb="255,128,0" />
+		<color name="yellow" rgb="255,255,0" />
+		<color name="yellow2" rgb="255,255,128" />
+		<color name="purple" rgb="128,0,128" />
+		<color name="purple2" rgb="255,0,255" />
+		<color name="cyan" rgb="0,255,255" />
+		<color name="cyan2" rgb="128,255,255" />
+		<color name="orange" rgb="255,128,0" />
+		<color name="orange2" rgb="255,192,0" />
+		<color name="pink" rgb="255,0,255" />
+		<color name="pink2" rgb="255,128,255" />
+		<color name="brown" rgb="128,64,0" />
+		<color name="brown2" rgb="192,96,0" />
+		<color name="grey" rgb="128,128,128" />
+		<color name="grey2" rgb="192,192,192" />
+		<color name="transparent" rgb="0,0,0" alpha="0" />
+	</palette>
+
+	<fonts>
+		<font id="text_default">
+			<language id="*" file="MaterialSymbolsSharp.ttf" size="16" />
+		</font>
+		<font id="text_button">
+			<language id="*" file="MaterialSymbolsSharp.ttf" size="16" />
+		</font>
+		<font id="text_normal">
+			<language id="*" file="MaterialSymbolsSharp.ttf" size="16" />
+		</font>
+		<font id="tooltip_normal">
+			<language id="*" file="MaterialSymbolsSharp.ttf" size="16" />
+		</font>
+		<font id="console">
+			<language id="*" file="builtinConsole" />
+		</font>
+
+		<text_color id="color_normal" color="white" />
+		<text_color id="color_normal_inverted" color="black" />
+		<text_color id="color_normal_hover" color="white" />
+		<text_color id="color_normal_disabled" color="lightgrey" />
+
+		<text_color id="color_alternative" color="lightgrey" />
+		<text_color id="color_alternative_inverted" color="white" />
+		<text_color id="color_alternative_hover" color="176,176,176" />
+		<text_color id="color_alternative_disabled" color="darkgrey" />
+
+		<text_color id="color_override" color="red" />
+		<text_color id="color_override_inverted" color="cyan" />
+		<text_color id="color_override_hover" color="red2" />
+		<text_color id="color_override_disabled" color="255,200,200" />
+
+		<text_color id="color_button" color="white" />
+		<text_color id="color_button_hover" color="white" />
+		<text_color id="color_button_disabled" color="lightgrey" />
+	</fonts>
+</render_info>
