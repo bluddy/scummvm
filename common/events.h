@@ -63,11 +63,12 @@ enum EventType {
 	EVENT_MBUTTONDOWN = 13,
 	EVENT_MBUTTONUP = 14,
 
-	EVENT_MAINMENU = 15,
-	EVENT_RETURN_TO_LAUNCHER = 16,
-	EVENT_MUTE = 17,
+			EVENT_MAINMENU,
+	EVENT_GLOBAL_OPTIONS,
+	EVENT_RETURN_TO_LAUNCHER,
+	EVENT_QUIT,
 
-	EVENT_QUIT = 10,
+
 	EVENT_SCREEN_CHANGED = 11,
 
 	/** The input devices have changed, input-related configuration must be reapplied. */

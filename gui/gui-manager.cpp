@@ -35,6 +35,10 @@
 #include "gui/ThemeEval.h"
 #include "gui/Tooltip.h"
 #include "gui/widget.h"
+#include "gui/hamburgermenu.h"
+#include "gui/tabbedoptionsdialog.h"
+#include "gui/hamburgermenu.h"
+#include "gui/tabbedoptionsdialog.h"
 
 #include "graphics/cursorman.h"
 #include "graphics/macgui/macwindowmanager.h"
@@ -586,7 +590,7 @@ void GuiManager::runLoop() {
 				continue;
 			}
 
-			if (_theme->getName() == "touchmodern") {
+			if (_theme->getThemeId() == "touchmodern") {
 				if (event.type == Common::EVENT_MAINMENU) {
 					if (!_hamburgerMenu) {
 						_hamburgerMenu = new HamburgerMenuDialog();
@@ -600,9 +604,8 @@ void GuiManager::runLoop() {
 					_optionsDialog->runModal();
 					continue;
 				}
-			} else {
-				processEvent(event, activeDialog);
 			}
+			processEvent(event, activeDialog);
 		}
 
 		// If iconsSet was modified, notify dialogs so that they can be  updated if needed
