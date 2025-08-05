@@ -811,7 +811,8 @@ void LauncherDialog::handleCommand(CommandSender *sender, uint32 cmd, uint32 dat
 		break;
 #endif
 	case kOptionsCmd: {
-		Common::Event event(Common::EVENT_GLOBAL_OPTIONS);
+		Common::Event event;
+		event.type = Common::EVENT_GLOBAL_OPTIONS;
 		g_system->getEventManager()->pushEvent(event);
 		}
 		break;

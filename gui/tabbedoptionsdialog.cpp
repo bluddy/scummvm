@@ -1,6 +1,6 @@
 #include "gui/tabbedoptionsdialog.h"
 #include "gui/gui-manager.h"
-#include "gui/widgets/options_widgets.h"
+#include "gui/options.h"
 
 namespace GUI {
 

@@ -2,7 +2,7 @@
 #define GUI_HAMBURGERMENU_H
 
 #include "gui/dialog.h"
-#include "gui/widgets/button.h"
+#include "gui/widget.h"
 
 namespace GUI {
 
@@ -16,6 +16,7 @@ public:
 	HamburgerMenuDialog();
 	~HamburgerMenuDialog() override;
 
+	void handleCommand(CommandSender *sender, uint32 cmd, uint32 data) override;
 	void drawDialog(DrawLayer layerToDraw) override;
 };
 
