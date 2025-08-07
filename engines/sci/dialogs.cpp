@@ -77,11 +77,11 @@ void OptionsWidget::load() {
 
 	for (const PopUpOptionsMap *entry = popUpOptionsList; entry->guioFlag; ++entry)
 		if (checkGameGUIOption(entry->guioFlag, _guiOptions))
-			_popUps[entry->configOption]->setSelectedTag(ConfMan.getInt(entry->configOption, _domain));
+			_popUps[entry->configOption]->setSelectedId(ConfMan.getInt(entry->configOption, _domain));
 
 	// If the deprecated native_fb01 option is set, use it to set midi_mode
 	if (ConfMan.hasKey("native_fb01", _domain) && ConfMan.getBool("native_fb01", _domain))
-		_popUps["midi_mode"]->setSelectedTag(kMidiModeFB01);
+		_popUps["midi_mode"]->setSelectedId(kMidiModeFB01);
 }
 
 bool OptionsWidget::save() {
@@ -91,7 +91,7 @@ bool OptionsWidget::save() {
 
 	for (const PopUpOptionsMap *entry = popUpOptionsList; entry->guioFlag; ++entry)
 		if (checkGameGUIOption(entry->guioFlag, _guiOptions))
-			ConfMan.setInt(entry->configOption, _popUps[entry->configOption]->getSelectedTag(), _domain);
+			ConfMan.setInt(entry->configOption, _popUps[entry->configOption]->getSelectedId(), _domain);
 
 	// Remove deprecated option
 	ConfMan.removeKey("native_fb01", _domain);

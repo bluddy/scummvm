@@ -540,7 +540,7 @@ void DropdownButtonWidget::handleMouseMoved(int x, int y, int button) {
 void DropdownButtonWidget::handleMouseUp(int x, int y, int button, int clickCount) {
 	if (isEnabled() && !_entries.empty() && _duringPress && isInDropDown(x, y)) {
 
-		PopUpDialog popupDialog(this, "DropdownDialog", x + getAbsX(), y + getAbsY());
+		PopUpDialog popupDialog(this, "DropdownDialog");
 		popupDialog.setPosition(getAbsX(), getAbsY() + _h);
 		popupDialog.setLineHeight(_h);
 		popupDialog.setPadding(_dropdownWidth, _dropdownWidth);

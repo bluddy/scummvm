@@ -137,7 +137,7 @@ void NeverhoodOptionsWidget::load() {
 		Common::String nhcFile(ConfMan.get("nhc_file", _domain));
 		for (uint i = 0; i < _nhcFiles.size(); i++)
 			if (_nhcFiles[i].equalsIgnoreCase(nhcFile))
-				_nhcPopUp->setSelectedTag(i);
+				_nhcPopUp->setSelectedId(i);
 	}
 }
 
@@ -159,7 +159,7 @@ bool NeverhoodOptionsWidget::save() {
 	}
 
 	if (_nhcPopUp) {
-		uint32 selectedNhcFile = _nhcPopUp->getSelectedTag();
+		uint32 selectedNhcFile = _nhcPopUp->getSelectedId();
 		if (selectedNhcFile < _nhcFiles.size())
 			ConfMan.set("nhc_file", _nhcFiles[selectedNhcFile], _domain);
 	}

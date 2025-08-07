@@ -116,7 +116,7 @@ void AGSOptionsWidget::load() {
 			}
 		}
 	}
-	_langPopUp->setSelectedTag(curLangIndex);
+	_langPopUp->setSelectedId(curLangIndex);
 
 	Common::String saveOverride;
 	gameConfig->tryGetVal("save_override", saveOverride);
@@ -144,7 +144,7 @@ void AGSOptionsWidget::load() {
 }
 
 bool AGSOptionsWidget::save() {
-	uint langIndex = _langPopUp->getSelectedTag();
+	uint langIndex = _langPopUp->getSelectedId();
 	if (langIndex < _traFileNames.size())
 		ConfMan.set("translation", _traFileNames[langIndex], _domain);
 	else

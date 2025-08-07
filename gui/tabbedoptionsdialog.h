@@ -4,9 +4,11 @@
 #include "gui/dialog.h"
 #include "gui/widgets/tabwidget.h"
 
+#include "gui/options.h"
+
 namespace GUI {
 
-class TabbedOptionsDialog : public Dialog {
+class TabbedOptionsDialog : public OptionsDialog {
 	TabWidget *_tabWidget;
 
 public:

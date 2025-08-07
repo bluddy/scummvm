@@ -363,11 +363,11 @@ void EditGameDialog::addGameControls(GuiObject *boss, const Common::String &pref
 		_langPopUpDesc = new StaticTextWidget(boss, prefix + "LangPopupDesc", _("Language:"), _("Language of the game. This will not turn your Spanish game version into English"));
 		_langPopUp = new PopUpWidget(boss, prefix + "LangPopup", _("Language of the game. This will not turn your Spanish game version into English"));
 		_langPopUp->appendEntry(_("<default>"), (uint32)Common::UNK_LANG);
-		_langPopUp->appendEntry("", (uint32)Common::UNK_LANG);
+		_langPopUp->appendEntry(Common::U32String(""), (uint32)Common::UNK_LANG);
 		const Common::LanguageDescription *l = Common::g_languages;
 		for (; l->code; ++l) {
 			if (checkGameGUIOptionLanguage(l->id, _guioptionsString))
-				_langPopUp->appendEntry(l->description, l->id);
+				_langPopUp->appendEntry(Common::U32String(l->description), l->id);
 		}
 	}
 
@@ -378,10 +378,10 @@ void EditGameDialog::addGameControls(GuiObject *boss, const Common::String &pref
 		_platformPopUpDesc = new StaticTextWidget(boss, prefix + "PlatformPopupDesc", _c("Platform:", "lowres"), _("Platform the game was originally designed for"));
 	_platformPopUp = new PopUpWidget(boss, prefix + "PlatformPopup", _("Platform the game was originally designed for"));
 	_platformPopUp->appendEntry(_("<default>"));
-	_platformPopUp->appendEntry("");
+	_platformPopUp->appendEntry(Common::U32String(""));
 	const Common::PlatformDescription *p = Common::g_platforms;
 	for (; p->code; ++p) {
-		_platformPopUp->appendEntry(p->description, p->id);
+		_platformPopUp->appendEntry(Common::U32String(p->description), p->id);
 	}
 }
 
@@ -447,12 +447,12 @@ void EditGameDialog::open() {
 		const Common::Language lang = Common::parseLanguage(ConfMan.get("language", _domain));
 
 		if (ConfMan.hasKey("language", _domain)) {
-			_langPopUp->setSelectedTag(lang);
+			_langPopUp->setSelectedId(lang);
 		} else {
-			_langPopUp->setSelectedTag((uint32)Common::UNK_LANG);
+			_langPopUp->setSelectedId((uint32)Common::UNK_LANG);
 		}
 
-		if (_langPopUp->numEntries() <= 3) { // If only one language is available
+		if (_langPopUp->getEntryCount() <= 3) { // If only one language is available
 			_langPopUpDesc->setEnabled(false);
 			_langPopUp->setEnabled(false);
 		}
@@ -489,7 +489,7 @@ void EditGameDialog::apply() {
 	ConfMan.set("description", _descriptionWidget->getEditString(), _domain);
 
 	if (_langPopUp != nullptr) {
-		Common::Language lang = (Common::Language)_langPopUp->getSelectedTag();
+		Common::Language lang = (Common::Language)_langPopUp->getSelectedId();
 		if (lang < 0)
 			ConfMan.removeKey("language", _domain);
 		else
@@ -512,7 +512,7 @@ void EditGameDialog::apply() {
 	else
 		ConfMan.removeKey("savepath", _domain);
 
-	Common::Platform platform = (Common::Platform)_platformPopUp->getSelectedTag();
+	Common::Platform platform = (Common::Platform)_platformPopUp->getSelectedId();
 	if (platform < 0)
 		ConfMan.removeKey("platform", _domain);
 	else

@@ -342,7 +342,7 @@ void OptionsDialog::build() {
 				if (renderMode == p->id)
 					sel = p->id;
 			}
-			_renderModePopUp->setSelectedTag(sel);
+			_renderModePopUp->setSelectedId(sel);
 		}
 
 		if (g_system->hasFeature(OSystem::kFeatureRotationMode)) {
@@ -356,7 +356,7 @@ void OptionsDialog::build() {
 					if (rotationMode == p->id)
 						sel = p->id;
 				}
-				_rotationModePopUp->setSelectedTag(sel);
+				_rotationModePopUp->setSelectedId(sel);
 			}
 		}
 
@@ -429,13 +429,13 @@ void OptionsDialog::build() {
 					if (scumm_stricmp(scalerPlugins[scalerIndex]->get<ScalerPluginObject>().getName(), scaler.c_str()) != 0)
 						continue;
 
-					_scalerPopUp->setSelectedTag(scalerIndex);
+					_scalerPopUp->setSelectedId(scalerIndex);
 					updateScaleFactors(scalerIndex);
 
 					if (ConfMan.hasKey("scale_factor", _domain)) {
 						int scaleFactor = ConfMan.getInt("scale_factor", _domain);
 						if (scalerPlugins[scalerIndex]->get<ScalerPluginObject>().hasFactor(scaleFactor))
-							_scaleFactorPopUp->setSelectedTag(scaleFactor);
+							_scaleFactorPopUp->setSelectedId(scaleFactor);
 					}
 
 					break;
@@ -472,15 +472,15 @@ void OptionsDialog::build() {
 
 	if (_rendererTypePopUp) {
 		_rendererTypePopUp->setEnabled(true);
-		_rendererTypePopUp->setSelectedTag(Graphics::Renderer::parseTypeCode(ConfMan.get("renderer", _domain)));
+		_rendererTypePopUp->setSelectedId(Graphics::Renderer::parseTypeCode(ConfMan.get("renderer", _domain)));
 	}
 
 	if (_antiAliasPopUp) {
 		_antiAliasPopUp->setEnabled(true);
 		if (ConfMan.hasKey("antialiasing", _domain)) {
-			_antiAliasPopUp->setSelectedTag(ConfMan.getInt("antialiasing", _domain));
+			_antiAliasPopUp->setSelectedId(ConfMan.getInt("antialiasing", _domain));
 		} else {
-			_antiAliasPopUp->setSelectedTag(uint32(-1));
+			_antiAliasPopUp->setSelectedId(uint32(-1));
 		}
 	}
 
@@ -490,7 +490,7 @@ void OptionsDialog::build() {
 
 	if (_oplPopUp) {
 		OPL::Config::DriverId id = MAX<OPL::Config::DriverId>(OPL::Config::parse(ConfMan.get("opl_driver", _domain)), 0);
-		_oplPopUp->setSelectedTag(id);
+		_oplPopUp->setSelectedId(id);
 	}
 
 	if (_multiMidiCheckbox) {
@@ -646,11 +646,11 @@ void OptionsDialog::apply() {
 
 			bool isSet = false;
 
-			if ((int32)_gfxPopUp->getSelectedTag() >= 0) {
+			if ((int32)_gfxPopUp->getSelectedId() >= 0) {
 				const OSystem::GraphicsMode *gm = g_system->getSupportedGraphicsModes();
 
 				while (gm->name) {
-					if (gm->id == (int)_gfxPopUp->getSelectedTag()) {
+					if (gm->id == (int)_gfxPopUp->getSelectedId()) {
 						if (ConfMan.get("gfx_mode", _domain) != gm->name) {
 							_gfxPopUpDesc->setFontColor(ThemeEngine::FontColor::kFontColorNormal);
 							graphicsModeChanged = true;
@@ -669,17 +669,17 @@ void OptionsDialog::apply() {
 					graphicsModeChanged = true;
 			}
 
-			if ((int32)_renderModePopUp->getSelectedTag() >= 0) {
-				Common::String renderModeCode = Common::getRenderModeCode((Common::RenderMode)_renderModePopUp->getSelectedTag());
-				if (_renderModePopUp->getSelectedTag() == 0 || ConfMan.get("render_mode", _domain) != renderModeCode) {
+			if ((int32)_renderModePopUp->getSelectedId() >= 0) {
+				Common::String renderModeCode = Common::getRenderModeCode((Common::RenderMode)_renderModePopUp->getSelectedId());
+				if (_renderModePopUp->getSelectedId() == 0 || ConfMan.get("render_mode", _domain) != renderModeCode) {
 					ConfMan.set("render_mode", renderModeCode, _domain);
 					_renderModePopUpDesc->setFontColor(ThemeEngine::FontColor::kFontColorNormal);
 				}
 			}
 
 			if (g_system->hasFeature(OSystem::kFeatureRotationMode)) {
-				if ((int32)_rotationModePopUp->getSelectedTag() >= 0) {
-					int rotationModeCode = ((Common::RotationMode)_rotationModePopUp->getSelectedTag());
+				if ((int32)_rotationModePopUp->getSelectedId() >= 0) {
+					int rotationModeCode = ((Common::RotationMode)_rotationModePopUp->getSelectedId());
 					if (!ConfMan.hasKey("rotation_mode", _domain) ||
 						ConfMan.getInt("rotation_mode", _domain) != rotationModeCode) {
 						ConfMan.setInt("rotation_mode", rotationModeCode, _domain);
@@ -697,11 +697,11 @@ void OptionsDialog::apply() {
 
 			if (g_system->hasFeature(OSystem::kFeatureStretchMode)) {
 				isSet = false;
-				if ((int32)_stretchPopUp->getSelectedTag() >= 0) {
+				if ((int32)_stretchPopUp->getSelectedId() >= 0) {
 					const OSystem::GraphicsMode *sm = g_system->getSupportedStretchModes();
 
 					while (sm->name) {
-						if (sm->id == (int)_stretchPopUp->getSelectedTag()) {
+						if (sm->id == (int)_stretchPopUp->getSelectedId()) {
 							if (ConfMan.get("stretch_mode", _domain) != sm->name) {
 								graphicsModeChanged = true;
 								ConfMan.set("stretch_mode", sm->name, _domain);
@@ -724,15 +724,15 @@ void OptionsDialog::apply() {
 			if (g_system->hasFeature(OSystem::kFeatureScalers)) {
 				isSet = false;
 				const PluginList &scalerPlugins = ScalerMan.getPlugins();
-				if ((int32)_scalerPopUp->getSelectedTag() >= 0) {
-					const char *name = scalerPlugins[_scalerPopUp->getSelectedTag()]->get<ScalerPluginObject>().getName();
+				if ((int32)_scalerPopUp->getSelectedId() >= 0) {
+					const char *name = scalerPlugins[_scalerPopUp->getSelectedId()]->get<ScalerPluginObject>().getName();
 					if (ConfMan.get("scaler", _domain) != name) {
 						graphicsModeChanged = true;
 						ConfMan.set("scaler", name, _domain);
 						_scalerPopUpDesc->setFontColor(ThemeEngine::FontColor::kFontColorNormal);
 					}
 
-					int factor = _scaleFactorPopUp->getSelectedTag();
+					int factor = _scaleFactorPopUp->getSelectedId();
 					if (ConfMan.getInt("scale_factor", _domain) != factor) {
 						ConfMan.setInt("scale_factor", factor, _domain);
 						graphicsModeChanged = true;
@@ -755,8 +755,8 @@ void OptionsDialog::apply() {
 			}
 
 			if (_rendererTypePopUp) {
-				if (_rendererTypePopUp->getSelectedTag() > 0) {
-					Graphics::RendererType selected = (Graphics::RendererType) _rendererTypePopUp->getSelectedTag();
+				if (_rendererTypePopUp->getSelectedId() > 0) {
+					Graphics::RendererType selected = (Graphics::RendererType) _rendererTypePopUp->getSelectedId();
 					ConfMan.set("renderer", Graphics::Renderer::getTypeCode(selected), _domain);
 				} else {
 					ConfMan.removeKey("renderer", _domain);
@@ -764,8 +764,8 @@ void OptionsDialog::apply() {
 			}
 
 			if (_antiAliasPopUp) {
-				if (_antiAliasPopUp->getSelectedTag() != (uint32)-1) {
-					uint level = _antiAliasPopUp->getSelectedTag();
+				if (_antiAliasPopUp->getSelectedId() != (uint32)-1) {
+					uint level = _antiAliasPopUp->getSelectedId();
 					ConfMan.setInt("antialiasing", level, _domain);
 				} else {
 					ConfMan.removeKey("antialiasing", _domain);
@@ -1005,7 +1005,7 @@ void OptionsDialog::apply() {
 
 	if (_oplPopUp) {
 		if (_enableAudioSettings) {
-			const OPL::Config::EmulatorDescription *ed = OPL::Config::findDriver(_oplPopUp->getSelectedTag());
+			const OPL::Config::EmulatorDescription *ed = OPL::Config::findDriver(_oplPopUp->getSelectedId());
 
 			if ((ed && ConfMan.get("opl_driver", _domain) != ed->name) || !ed) {
 				_oplPopUpDesc->setFontColor(ThemeEngine::FontColor::kFontColorNormal);

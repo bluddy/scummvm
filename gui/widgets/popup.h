@@ -37,45 +37,37 @@ namespace GUI {
  * Implementation wise, when the user selects an item, then the specified command
  * is broadcast, with data being equal to the tag value of the selected entry.
  */
-class PopUpWidget : public Widget, public CommandSender {
-	struct Entry {
-		Common::U32String	name;
-		uint32		tag;
-	};
-	typedef Common::Array<Entry> EntryList;
-protected:
-	EntryList		_entries;
-	int				_selectedItem;
+struct PopUpEntry {
+	Common::U32String label;
+	int id;
+};
 
-	uint32			_cmd;
+class PopUpWidget : public ButtonWidget {
+	int _leftPadding;
+	int _rightPadding;
 
 public:
 	PopUpWidget(GuiObject *boss, const Common::String &name, const Common::U32String &tooltip = Common::U32String(), uint32 cmd = 0);
-	PopUpWidget(GuiObject *boss, int x, int y, int w, int h, const Common::U32String &tooltip = Common::U32String(), uint32 cmd = 0);
 
-	void handleMouseDown(int x, int y, int button, int clickCount) override;
-	void handleMouseWheel(int x, int y, int direction) override;
+	void reflowLayout() override;
 
-	void appendEntry(const Common::U32String &entry, uint32 tag = (uint32)-1);
-	void appendEntry(const Common::String &entry, uint32 tag = (uint32)-1);
+	void appendEntry(const Common::U32String &entry, int id = -1);
 	void clearEntries();
-	int numEntries() { return _entries.size(); }
 
-	/** Select the entry at the given index. */
-	void setSelected(int item);
+	void setSelected(int sel);
+	int getSelected() const;
+	void setSelectedId(int id);
+	int getSelectedId() const;
+	int getEntryCount() const;
 
-	/** Select the first entry matching the given tag. */
-	void setSelectedTag(uint32 tag);
-
-	int getSelected() const						{ return _selectedItem; }
-	uint32 getSelectedTag() const				{ return (_selectedItem >= 0) ? _entries[_selectedItem].tag : (uint32)-1; }
-//	const String& getSelectedString() const		{ return (_selectedItem >= 0) ? _entries[_selectedItem].name : String::emptyString; }
-
-	void handleMouseEntered(int button) override	{ if (_selectedItem != -1) read(_entries[_selectedItem].name); setFlags(WIDGET_HILITED); markAsDirty(); }
-	void handleMouseLeft(int button) override	{ clearFlags(WIDGET_HILITED); markAsDirty(); }
+	void handleMouseUp(int x, int y, int button, int clickCount) override;
 
 protected:
 	void drawWidget() override;
+
+private:
+	Common::Array<PopUpEntry> _entries;
+	int _selected;
 };
 
 /**

@@ -363,15 +363,15 @@ void AndroidOptionsWidget::load() {
 
 	// When in application domain, we don't have default entry so we must have a value
 	if (inAppDomain) {
-		_preferredTMMenusPopUp->setSelectedTag(loadTouchMode("touch_mode_menus", !inAppDomain, kTouchModeMouse));
+		_preferredTMMenusPopUp->setSelectedId(loadTouchMode("touch_mode_menus", !inAppDomain, kTouchModeMouse));
 	}
-	_preferredTM2DGamesPopUp->setSelectedTag(loadTouchMode("touch_mode_2d_games", !inAppDomain, kTouchModeTouchpad));
-	_preferredTM3DGamesPopUp->setSelectedTag(loadTouchMode("touch_mode_3d_games", !inAppDomain, kTouchModeGamepad));
+	_preferredTM2DGamesPopUp->setSelectedId(loadTouchMode("touch_mode_2d_games", !inAppDomain, kTouchModeTouchpad));
+	_preferredTM3DGamesPopUp->setSelectedId(loadTouchMode("touch_mode_3d_games", !inAppDomain, kTouchModeGamepad));
 
 	if (inAppDomain) {
-		_orientationMenusPopUp->setSelectedTag(loadOrientation("orientation_menus", !inAppDomain, kOrientationAuto));
+		_orientationMenusPopUp->setSelectedId(loadOrientation("orientation_menus", !inAppDomain, kOrientationAuto));
 	}
-	_orientationGamesPopUp->setSelectedTag(loadOrientation("orientation_games", !inAppDomain, kOrientationAuto));
+	_orientationGamesPopUp->setSelectedId(loadOrientation("orientation_games", !inAppDomain, kOrientationAuto));
 }
 
 void AndroidOptionsWidget::saveTouchMode(const Common::String &setting, uint32 touchMode) {
@@ -417,15 +417,15 @@ bool AndroidOptionsWidget::save() {
 		ConfMan.setBool("onscreen_control", _onscreenCheckbox->getState(), _domain);
 
 		if (inAppDomain) {
-			saveTouchMode("touch_mode_menus", _preferredTMMenusPopUp->getSelectedTag());
+			saveTouchMode("touch_mode_menus", _preferredTMMenusPopUp->getSelectedId());
 		}
-		saveTouchMode("touch_mode_2d_games", _preferredTM2DGamesPopUp->getSelectedTag());
-		saveTouchMode("touch_mode_3d_games", _preferredTM3DGamesPopUp->getSelectedTag());
+		saveTouchMode("touch_mode_2d_games", _preferredTM2DGamesPopUp->getSelectedId());
+		saveTouchMode("touch_mode_3d_games", _preferredTM3DGamesPopUp->getSelectedId());
 
 		if (inAppDomain) {
-			saveOrientation("orientation_menus", _orientationMenusPopUp->getSelectedTag());
+			saveOrientation("orientation_menus", _orientationMenusPopUp->getSelectedId());
 		}
-		saveOrientation("orientation_games", _orientationGamesPopUp->getSelectedTag());
+		saveOrientation("orientation_games", _orientationGamesPopUp->getSelectedId());
 	} else {
 		ConfMan.removeKey("onscreen_control", _domain);
 

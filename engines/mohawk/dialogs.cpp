@@ -162,7 +162,7 @@ MystOptionsWidget::MystOptionsWidget(GuiObject *boss, const Common::String &name
 
 			const MystLanguage *languages = MohawkMetaEngine_Myst::listLanguages();
 			while (languages->language != Common::UNK_LANG) {
-				_languagePopUp->appendEntry(Common::getLanguageDescription(languages->language), languages->language);
+				_languagePopUp->appendEntry(Common::U32String(Common::getLanguageDescription(languages->language)), languages->language);
 				languages++;
 			}
 		}
@@ -225,7 +225,7 @@ void MystOptionsWidget::load() {
 		Common::Language language = Common::parseLanguage(ConfMan.get("language", _domain));
 		const MystLanguage *languageDesc = MohawkEngine_Myst::getLanguageDesc(language);
 		if (languageDesc) {
-			_languagePopUp->setSelectedTag(languageDesc->language);
+			_languagePopUp->setSelectedId(languageDesc->language);
 		}
 	}
 
@@ -269,7 +269,7 @@ bool MystOptionsWidget::save() {
 		MohawkEngine_Myst *vm = static_cast<MohawkEngine_Myst *>(g_engine);
 		assert(vm);
 
-		int32 selectedLanguage = _languagePopUp->getSelectedTag();
+		int32 selectedLanguage = _languagePopUp->getSelectedId();
 		const MystLanguage *languageDesc = nullptr;
 		if (selectedLanguage >= 0) {
 			languageDesc = MohawkEngine_Myst::getLanguageDesc(static_cast<Common::Language>(selectedLanguage));
@@ -382,7 +382,7 @@ RivenOptionsWidget::RivenOptionsWidget(GuiObject *boss, const Common::String &na
 
 		const RivenLanguage *languages = MohawkMetaEngine_Riven::listLanguages();
 		while (languages->language != Common::UNK_LANG) {
-			_languagePopUp->appendEntry(Common::getLanguageDescription(languages->language), languages->language);
+			_languagePopUp->appendEntry(Common::U32String(Common::getLanguageDescription(languages->language)), languages->language);
 			languages++;
 		}
 	}
@@ -416,13 +416,13 @@ void RivenOptionsWidget::load() {
 	_waterEffectCheckbox->setState(ConfMan.getBool("water_effects", _domain));
 
 	uint32 transitions = ConfMan.getInt("transition_mode", _domain);
-	_transitionModePopUp->setSelectedTag(RivenGraphics::sanitizeTransitionMode(transitions));
+	_transitionModePopUp->setSelectedId(RivenGraphics::sanitizeTransitionMode(transitions));
 
 	if (_languagePopUp) {
 		Common::Language language = Common::parseLanguage(ConfMan.get("language", _domain));
 		const RivenLanguage *languageDesc = MohawkEngine_Riven::getLanguageDesc(language);
 		if (languageDesc) {
-			_languagePopUp->setSelectedTag(languageDesc->language);
+			_languagePopUp->setSelectedId(languageDesc->language);
 		}
 	}
 }
@@ -430,10 +430,10 @@ void RivenOptionsWidget::load() {
 bool RivenOptionsWidget::save() {
 	ConfMan.setBool("zip_mode", _zipModeCheckbox->getState(), _domain);
 	ConfMan.setBool("water_effects", _waterEffectCheckbox->getState(), _domain);
-	ConfMan.setInt("transition_mode", _transitionModePopUp->getSelectedTag(), _domain);
+	ConfMan.setInt("transition_mode", _transitionModePopUp->getSelectedId(), _domain);
 
 	if (_languagePopUp) {
-		int32 selectedLanguage = _languagePopUp->getSelectedTag();
+		int32 selectedLanguage = _languagePopUp->getSelectedId();
 		const RivenLanguage *languageDesc = nullptr;
 		if (selectedLanguage >= 0) {
 			languageDesc = MohawkEngine_Riven::getLanguageDesc(static_cast<Common::Language>(selectedLanguage));

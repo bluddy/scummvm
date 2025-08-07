@@ -148,7 +148,7 @@ void Sword1OptionsWidget::load() {
 			}
 		}
 
-		_langPopUp->setSelectedTag(curLangIndex);
+		_langPopUp->setSelectedId(curLangIndex);
 	}
 
 	if (_windowsAudioMode) {
@@ -164,7 +164,7 @@ void Sword1OptionsWidget::load() {
 
 bool Sword1OptionsWidget::save() {
 	if (_langPopUp) {
-		uint langIndex = _langPopUp->getSelectedTag();
+		uint langIndex = _langPopUp->getSelectedId();
 		if (langIndex < _numAvailableLangs)
 			ConfMan.set("subtitles_language_override", _availableLangCodes[langIndex], _domain);
 		else
